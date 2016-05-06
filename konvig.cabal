@@ -1,0 +1,54 @@
+cabal-version:       >= 1.10
+name:                konvig
+version:             0.1.1
+synopsis:            Configuration format for text heavy information
+license:             BSD3
+license-file:        LICENCE
+author:              Andrew Cowie <andrew@operationaldynamics.com>
+maintainer:          Andrew Cowie <andrew@operationaldynamics.com>
+copyright:           © 2016 Operational Dynamics Consulting Pty Ltd, and Others
+category:            Text
+tested-with:         GHC == 7.10
+
+build-type:          Simple
+
+library
+  default-language:  Haskell2010
+
+  build-depends:     base,
+                     unordered-containers,
+                     text
+
+  hs-source-dirs:    lib
+
+  exposed-modules:   Data.Config
+  other-modules:     Data.Config.Types,
+                     Data.Config.Parser
+
+  ghc-options:       -O2
+                     -threaded
+                     -Wall
+                     -Wwarn
+                     -fwarn-tabs
+
+  ghc-prof-options:  -prof -fprof-auto-top
+
+
+test-suite           check
+  default-language:  Haskell2010
+  type:              exitcode-stdio-1.0
+
+  build-depends:     base,
+                     bytestring,
+                     unordered-containers,
+                     transformers,
+                     mtl,
+                     HUnit,
+                     hspec,
+                     text,
+                     konvig
+
+  hs-source-dirs:    tests
+  main-is:           CheckProgram.hs
+                      
+-- vim: set tabstop=21 expandtab:
