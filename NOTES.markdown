@@ -38,7 +38,7 @@ the here document syntax from the shell.
 ```
 multi = <<HERE
 This is a test of the Emergency Broadcast System.
-If it wasn't a test, you'd never know anyway.
+If it wasn't a test, you'd never know anyway.>
 HERE
 ```
 
@@ -46,7 +46,7 @@ There were a few things unsatisfying about this. The equals is redundant (one
 of the things that brought me to ditch them) and the double less than is
 clumsy.
 
-That made me reflec to the notion of a block, and indeed the uniform notion
+That made me reflect to the notion of a block, and indeed the uniform notion
 throughout modern programming for a block is braces. So in compact form,
 
 ```
@@ -56,7 +56,7 @@ If it wasn't a test, you'd never know anyway.
 }
 ```
 
-Interior charaacters parsed literaly, no escaping. Obvious problem with that
+Interior characters parsed literally, no escaping. Obvious problem with that
 is when you've got program code internally, so combine idea with here
 document / multipart mime syntax:
 
@@ -91,6 +91,12 @@ int main(int* argc, char** argv) {
 -}
 
 programInHaskell {*
+
+data Foo = Bar {
+    frock :: String,
+    galosh :: Int
+}
+
 --
 -- program entry point
 --
@@ -101,8 +107,8 @@ main = do
 
 ```
 
-doesn't matter what symbol you use; they're here documents. Personally I
-think output writers should go for random strings of length 4 or so.
+doesn't matter what symbol you use; they're here documents. Personally I think
+output writers should go for random strings of length 6 or so.
 
 ```
 multi {2oijgWa
@@ -119,4 +125,24 @@ homepage <http://www.example.com>
 ```
 
 It's not a special type so much as an alternate delimiter for fields
-containing universal resource locators. URLs show up in data a *lot* 
+containing universal resource locators. URLs show up in data a *lot*.
+
+Lists
+-----
+
+One of the things that caused me to ignore the `[[ ... ]]` delimiter for
+multiline strings used by Lua is that `[` is unavoidable as introducing a
+syntactic list. Which is why Haskell's quasi quoter syntax `[| ... |]` is out
+too.
+
+Having settled on `{ ... }` as a multiline block, bracket is free again. And
+meanwhile the bad taste in my mouth from Java's properties files attempt at
+lists remains sour a decade later. So why not support lists naively, even if
+at present I don't have a serious use case for them? Sure.
+
+```
+seasons ["winter", "road construction"]
+```
+
+which is one of the reasons quotes were worth restoring.
+
