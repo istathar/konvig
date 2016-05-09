@@ -17,13 +17,12 @@ library
 
   build-depends:     base,
                      unordered-containers,
+                     trifecta,
                      text
 
   hs-source-dirs:    lib
 
-  exposed-modules:   Data.Config
-  other-modules:     Data.Config.Types,
-                     Data.Config.Parser
+  exposed-modules:   Data.Config.Parser
 
   ghc-options:       -O2
                      -threaded
