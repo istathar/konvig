@@ -13,4 +13,4 @@ suite :: Spec
 suite = do
     describe "Things" $ do
         it "can be done with stuff" $ do
-            True `shouldbe` True
+            True `shouldBe` True

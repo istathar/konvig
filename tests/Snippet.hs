@@ -3,8 +3,6 @@
 
 module Main where
 
-import Data.Aeson
-import Data.Aeson.Encode.Pretty
 import qualified Data.ByteString.Lazy.Char8 as L
 import Data.Config.Parser
 import qualified Data.Text.IO as T
