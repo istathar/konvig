@@ -1,6 +1,6 @@
 cabal-version:       >= 1.10
 name:                konvig
-version:             0.1.1
+version:             0.1.2
 synopsis:            Configuration format for text heavy information
 license:             BSD3
 license-file:        LICENCE
@@ -61,6 +61,8 @@ executable           snippet
                      konvig
 
   ghc-options:       -threaded
+                     -Wall
+                     -Wwarn
                      -fwarn-tabs
 
   hs-source-dirs:    tests
