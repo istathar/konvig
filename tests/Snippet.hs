@@ -6,7 +6,7 @@ module Main where
 import qualified Data.ByteString.Lazy.Char8 as L
 import Data.Config.Parser
 import qualified Data.Text.IO as T
-import Text.Trifecta
+import Text.Megaparsec
 
 main :: IO ()
 main = do
