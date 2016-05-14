@@ -26,15 +26,15 @@ buildConfig (name,version) pairs = pure $ Config name version (Map.fromList pair
 
 
 schemaLine :: Parser (Name,Version)
-schemaLine = do
-    identifier <- some alphaNumChar
+schemaLine = (,) <$> identifier <* blank <* prefix <*> version
+  where
+    identifier = T.pack <$> some alphaNumChar
         <?> "first line must start with schema name"
-    _ <- spaceChar
-    _ <- char 'v'
+    blank = spaceChar
+    prefix = char 'v'
         <?> "'v'; first line must be of the form \"name vN\" where N is a number"
-    version <- some digitChar
+    version = T.pack <$> some digitChar
         <?> "Need to specify schema version on the first line"
-    return (T.pack identifier, T.pack version)
 
 dataLine :: Parser (Key,Value)
 dataLine = return ("word","Hi There")
