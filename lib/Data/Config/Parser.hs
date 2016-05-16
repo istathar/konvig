@@ -24,17 +24,16 @@ konvigParser = do
 buildConfig :: (Name,Version) -> [(Key,Value)] -> Parser Config
 buildConfig (name,version) pairs = pure $ Config name version (Map.fromList pairs)
 
+identifier :: Parser Name
+identifier = T.pack <$> some alphaNumChar <?> "first line must start with schema name"
+
+version :: Parser Version
+version = T.pack <$> some digitChar <?> "first line must be of the form \"name vN\" where N is a number"
 
 schemaLine :: Parser (Name,Version)
-schemaLine = (,) <$> identifier <* blank <* prefix <*> version
-  where
-    identifier = T.pack <$> some alphaNumChar
-        <?> "first line must start with schema name"
-    blank = spaceChar
-    prefix = char 'v'
-        <?> "'v'; first line must be of the form \"name vN\" where N is a number"
-    version = T.pack <$> some digitChar
-        <?> "Need to specify schema version on the first line"
+schemaLine = (,) <$> identifier <* spaceChar <* char 'v' <*> version
+
 
 dataLine :: Parser (Key,Value)
 dataLine = return ("word","Hi There")
+
