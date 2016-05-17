@@ -10,4 +10,4 @@ import Text.Megaparsec
 
 main :: IO ()
 main = do
-    parseTest konvigParser "fortune v1\nfunny=\"true\"\n"
+    parseTest konvigParser "fortune v1\nfunny \"true\"\n"
