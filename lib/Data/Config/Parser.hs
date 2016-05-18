@@ -46,14 +46,13 @@ value = char '"' *> quoteEscapedString <* char '"'
 
 quoteEscapedString :: Parser Text
 quoteEscapedString = scan False forEscape
-
   where
     forEscape :: Bool -> Char -> Maybe Bool
     forEscape escape ch = case ch of
         '"' -> case escape of
                 True    -> Just False
-                False   -> Nothing
+                False   -> Nothing      -- found end of string, done!
         '\\' -> case escape of
-                True    -> Just False -- turn it off
-                False   -> Just True
+                True    -> Just False
+                False   -> Just True    -- potential escaped quote following
         _   -> Just False
