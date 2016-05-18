@@ -17,12 +17,13 @@ library
 
   build-depends:     base,
                      unordered-containers,
-                     trifecta,
+                     attoparsec,
                      text
 
   hs-source-dirs:    lib
 
   exposed-modules:   Data.Config.Parser
+  other-modules:     Data.Config.Types
 
   ghc-options:       -O2
                      -threaded
@@ -57,7 +58,7 @@ executable           snippet
                      bytestring,
                      unordered-containers,
                      text,
-                     trifecta,
+                     attoparsec,
                      konvig
 
   ghc-options:       -threaded

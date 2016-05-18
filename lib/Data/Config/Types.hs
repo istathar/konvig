@@ -4,7 +4,7 @@ import Data.HashMap.Strict (HashMap)
 import Data.Text (Text)
 
 type Name = Text
-type Version = Int      -- TODO use versions package
+type Version = Text      -- TODO use versions package
 
 type Key = Text
 type Value = Text
