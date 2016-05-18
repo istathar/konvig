@@ -17,7 +17,7 @@ library
 
   build-depends:     base,
                      unordered-containers,
-                     megaparsec,
+                     attoparsec,
                      text
 
   hs-source-dirs:    lib
@@ -58,7 +58,7 @@ executable           snippet
                      bytestring,
                      unordered-containers,
                      text,
-                     megaparsec,
+                     attoparsec,
                      konvig
 
   ghc-options:       -threaded
