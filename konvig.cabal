@@ -45,6 +45,7 @@ test-suite           check
                      mtl,
                      HUnit,
                      hspec,
+                     hspec-attoparsec,
                      text,
                      konvig
 
