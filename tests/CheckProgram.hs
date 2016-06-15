@@ -16,3 +16,7 @@ suite = do
     describe "Basic structure" $ do
         it "minimal file requires schema line" $ do
             ("dhcpcd v1\n" :: Text) ~> schemaLine `shouldParse` ("dhcpcd", "1")
+
+        it "well formed key/value pair parses" $ do
+            ("name \"Kermit the Frog\"\n" :: Text) ~> dataLine `shouldParse` ("name", "Kermit the Frog")
+
