@@ -20,3 +20,7 @@ suite = do
         it "well formed key/value pair parses" $ do
             ("name \"Kermit the Frog\"\n" :: Text) ~> dataLine `shouldParse` ("name", "Kermit the Frog")
 
+        it "keys must be alphanumeric" $ do
+            key `shouldFailOn` ("n%m" :: Text)
+
+

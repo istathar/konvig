@@ -27,18 +27,21 @@ identifier :: Parser Name
 identifier = takeWhile isAlphaNum
     <?> "first line must start with schema name"
 
-version :: Parser Version
-version = takeWhile isDigit <?> "first line must be of the form \"name vN\" where N is a number"
+schemaVersion :: Parser Version
+schemaVersion = takeWhile isDigit <?> "first line must be of the form \"name vN\" where N is a number"
 
 schemaLine :: Parser (Name,Version)
-schemaLine = (,) <$> identifier <* space <* char 'v' <*> version <* endOfLine
+schemaLine = (,) <$> identifier <* space <* char 'v' <*> schemaVersion <* endOfLine
 
 dataLine :: Parser (Key,Value)
 dataLine = (,) <$> key <* skipWhile isHorizontalSpace <*> value <* endOfLine
 
 key :: Parser Key
-key = takeWhile isAlphaNum
-    <?> "key must be an alpha-numeric identifier"
+key = do
+    candidate <- takeWhile1 (not . isHorizontalSpace)
+    case T.find (not . isAlphaNum) candidate of
+        Nothing -> return candidate
+        Just _  -> fail "key must be an alpha-numeric identifier"
 
 value :: Parser Value
 value = char '"' *> quoteEscapedString <* char '"'
