@@ -26,12 +26,11 @@ library
   other-modules:     Data.Config.Types
 
   ghc-options:       -O2
-                     -threaded
                      -Wall
                      -Wwarn
                      -fwarn-tabs
 
-  ghc-prof-options:  -prof -fprof-auto-top
+  ghc-prof-options:  -fprof-auto-top
 
 
 test-suite           check
