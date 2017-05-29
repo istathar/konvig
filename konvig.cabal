@@ -6,9 +6,9 @@ license:             BSD3
 license-file:        LICENCE
 author:              Andrew Cowie <andrew@operationaldynamics.com>
 maintainer:          Andrew Cowie <andrew@operationaldynamics.com>
-copyright:           © 2016 Operational Dynamics Consulting Pty Ltd, and Others
+copyright:           © 2016-2017 Operational Dynamics Consulting Pty Ltd, and Others
 category:            Text
-tested-with:         GHC == 7.10
+tested-with:         GHC == 8.0.2
 
 build-type:          Simple
 
@@ -25,8 +25,7 @@ library
   exposed-modules:   Data.Config.Parser
   other-modules:     Data.Config.Types
 
-  ghc-options:       -O2
-                     -Wall
+  ghc-options:       -Wall
                      -Wwarn
                      -fwarn-tabs
 
@@ -50,6 +49,11 @@ test-suite           check
 
   hs-source-dirs:    tests
   main-is:           CheckProgram.hs
+  
+  ghc-options:       -O2
+                     -Wall
+                     -Wwarn
+                     -fwarn-tabs
                       
 executable           snippet
   default-language:  Haskell2010
@@ -62,11 +66,31 @@ executable           snippet
                      konvig
 
   ghc-options:       -threaded
+                     -O2
                      -Wall
                      -Wwarn
                      -fwarn-tabs
 
   hs-source-dirs:    tests
   main-is:           Snippet.hs
+                      
+executable           roundtrip
+  default-language:  Haskell2010
+
+  build-depends:     base,
+                     bytestring,
+                     unordered-containers,
+                     text,
+                     attoparsec,
+                     konvig
+
+  ghc-options:       -threaded
+                     -O2
+                     -Wall
+                     -Wwarn
+                     -fwarn-tabs
+
+  hs-source-dirs:    tests
+  main-is:           RoundTrip.hs
                       
 -- vim: set tabstop=21 expandtab:
