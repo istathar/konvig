@@ -10,7 +10,7 @@ import qualified Data.Text.IO as T
 import Data.Attoparsec.Text
 
 example :: Text
-example = "fortune v1\nfunny \"true\"\n"
+example = "fortune v1\nfunny \"true\"\nwe@t$her \"dry\"\n"
 
 main :: IO ()
 main = do
